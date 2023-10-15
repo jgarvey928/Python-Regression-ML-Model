@@ -1,7 +1,7 @@
 import csv
 
 __author__ = "John Garvey"
-__date__ = "10/15/2023"
+__date__ = "10/14/2023"
 __assignment = "Project MS03"
 
 # ['Series Name', 'Series Code', 'Country Name', 'Country Code', '2000 [YR2000]', '2001 [YR2001]', '2002 [YR2002]',
@@ -47,6 +47,4 @@ def process_data(input_filename):
     pass
 
 
-filename = "./data_original/TheWorldBank_PopularIndicators.csv"
-process_data(filename)
 
