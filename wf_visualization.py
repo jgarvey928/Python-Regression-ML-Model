@@ -15,7 +15,9 @@ def visualize_data():
 
     load_processed_data()
 
-    
+    # TODO
+    print(pov_ppop[216]['Country Name'], pov_ppop[216]['2001'])
+
 
     pass
 
