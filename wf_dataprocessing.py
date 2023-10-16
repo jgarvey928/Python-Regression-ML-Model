@@ -17,8 +17,10 @@ def process_data(input_filename):
         life_expectancy_file.write(new_fieldnames)
         gdp_per_capita_file = open("./data_processing/gdp_per_capita.csv", "w")
         gdp_per_capita_file.write(new_fieldnames)
-        poverty_line_file = open("./data_processing/poverty_line.csv", "w")
-        poverty_line_file.write(new_fieldnames)
+        tech_exports_file = open("./data_processing/tech_exports.csv", "w")
+        tech_exports_file.write(new_fieldnames)
+        underweight_children_file = open("./data_processing/underweight_children.csv", "w")
+        underweight_children_file.write(new_fieldnames)
         for row in reader:
             # Life expectancy at birth
             if row['Series Code'] == "SP.DYN.LE00.IN":
@@ -34,16 +36,25 @@ def process_data(input_filename):
                               f"{row['2005 [YR2005]']},{row['2006 [YR2006]']},{row['2007 [YR2007]']},{row['2008 [YR2008]']},"
                               f"{row['2009 [YR2009]']},{row['2010 [YR2010]']},{row['2011 [YR2011]']},{row['2012 [YR2012]']},"
                               f"{row['2013 [YR2013]']},{row['2014 [YR2014]']},{row['2015 [YR2015]']}\n")
-            # Poverty headcount ratio at national poverty lines (% of population)
-            if row['Series Code'] == "SI.POV.NAHC":
-                poverty_line_file.write(f"{row['Country Name']},{row['Country Code']},{row['2000 [YR2000]']},"
+            # High-technology exports (% of manufactured exports)
+            if row['Series Code'] == "TX.VAL.TECH.MF.ZS":
+                tech_exports_file.write(f"{row['Country Name']},{row['Country Code']},{row['2000 [YR2000]']},"
                               f"{row['2001 [YR2001]']},{row['2002 [YR2002]']},{row['2003 [YR2003]']},{row['2004 [YR2004]']},"
                               f"{row['2005 [YR2005]']},{row['2006 [YR2006]']},{row['2007 [YR2007]']},{row['2008 [YR2008]']},"
                               f"{row['2009 [YR2009]']},{row['2010 [YR2010]']},{row['2011 [YR2011]']},{row['2012 [YR2012]']},"
                               f"{row['2013 [YR2013]']},{row['2014 [YR2014]']},{row['2015 [YR2015]']}\n")
+            # Prevalence of underweight, weight for age (% of children under 5)
+            if row['Series Code'] == "SH.STA.MALN.ZS":
+                underweight_children_file.write(f"{row['Country Name']},{row['Country Code']},{row['2000 [YR2000]']},"
+                                        f"{row['2001 [YR2001]']},{row['2002 [YR2002]']},{row['2003 [YR2003]']},{row['2004 [YR2004]']},"
+                                        f"{row['2005 [YR2005]']},{row['2006 [YR2006]']},{row['2007 [YR2007]']},{row['2008 [YR2008]']},"
+                                        f"{row['2009 [YR2009]']},{row['2010 [YR2010]']},{row['2011 [YR2011]']},{row['2012 [YR2012]']},"
+                                        f"{row['2013 [YR2013]']},{row['2014 [YR2014]']},{row['2015 [YR2015]']}\n")
+
         life_expectancy_file.close()
         gdp_per_capita_file.close()
-        poverty_line_file.close()
+        tech_exports_file.close()
+        underweight_children_file.close()
     pass
 
 
