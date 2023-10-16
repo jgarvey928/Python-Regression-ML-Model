@@ -8,60 +8,162 @@ __assignment = "Project MS03"
 
 # life expectancy data and quantitative data lists
 le_total = []
-le_total_quant = []
+le_total_summ = []
 # GDP per Capita data and quantitative data lists
 gdp_pcap = []
-gdp_pcap_quant = []
+gdp_pcap_summ = []
 # technology export percentage data and quantitative data lists
 tech_expo = []
-tech_expo_quant = []
+tech_expo_summ = []
 # percent of underweight children data and quantitative data lists
 udwe_child = []
-udwe_child_quant = []
+udwe_child_summ = []
 # poverty percentage for population data and quantitative data lists
 pov_ratio = []
-pov_ratio_quant = []
+pov_ratio_summ = []
 
 
 def visualize_data():
 
     # TODO
     load_processed_data()
+
+    #########################################################################
+    ############### PANAMA OUTLIER DATA REMOVED FOR TECH EXPO ###############
+    remove_from_list("Country Name", "Panama", tech_expo)
+    #########################################################################
+
     get_quant_data()
-    write_quant_data_table()
+    get_qual_data()
+    write_data_table()
+    get_coors()
+
     print("Number of Countries is", len(le_total))
     print("Life Expectancy in", le_total[206]['Country Name'], le_total[206]['Country Code'], "in 2015 is", int(float(le_total[206]['2015'])), "years old")
     print("GDP per Capita in", gdp_pcap[41]['Country Name'], gdp_pcap[41]['Country Code'], f"in 2015 is ${float(gdp_pcap[41]['2015']):.2f} US dollars")
     print("High-technology exports in", tech_expo[103]['Country Name'], tech_expo[103]['Country Code'], f"in 2015 is {float(tech_expo[103]['2015']):.1f} (% of manufactured exports)")
     print("Prevalence of underweight, weight for age", udwe_child[211]['Country Name'], udwe_child[211]['Country Code'], f"in 2015 is {udwe_child[211]['2015']} (% of children under 5)")
     print("Poverty headcount ratio at national poverty lines", pov_ratio[210]['Country Name'], pov_ratio[210]['Country Code'], f"in 2015 is {pov_ratio[210]['2015']} (% of population)")
-    display_list(le_total_quant)
-    display_list(gdp_pcap_quant)
-    display_list(tech_expo_quant)
-    display_list(udwe_child_quant)
-    display_list(pov_ratio_quant)
+
+    display_list(le_total)
+    display_list(gdp_pcap)
+    display_list(tech_expo)
+    display_list(udwe_child)
+
+    # display_list(le_total_summ)
+    # display_list(gdp_pcap_summ)
+    # display_list(tech_expo_summ)
+    # display_list(udwe_child_summ)
+    # display_list(pov_ratio_summ)
 
     pass
 
 
-def write_quant_data_table():
+def get_coors():
 
-    
+    # TODO
+    ### FIND CORRELATION BETWEEN LIFE EXPECTACY AND GDP FIRST
+    d1 = le_total_summ[1]
+    print(d1)
+    d2 = gdp_pcap_summ[1]
+    print(d2)
+
+
+    pass
+
+
+def write_data_table():
+
+    summary_file = open("data_processed/summary.txt", "w")
+    summary_file.write('=========================================================================================================================\n')
+    summary_file.write(' Dataset Information                           |      Min  |         Max  |    Median  |       Mean  |  Collected From  |\n')
+    summary_file.write('=========================================================================================================================\n')
+    summary_file.write(" "+le_total_summ[0]['Data Type']+"            | ")
+    summary_file.write(f"{le_total_summ[1]['Min']:8.2f}"+"  |    ")
+    summary_file.write(f"{le_total_summ[1]['Max']:8.2f}"+"  |  ")
+    summary_file.write(f"{le_total_summ[1]['Median']:8.2f}"+"  |   ")
+    summary_file.write(f"{le_total_summ[1]['Mean']:8.2f}"+"  |        ")
+    summary_file.write(f"{le_total_summ[0]['Number Collected From']:8.2f}" + "  |\n")
+    summary_file.write('-----------------------------------------------|-----------|--------------|------------|-------------|------------------|\n')
+    summary_file.write(" "+gdp_pcap_summ[0]['Data Type']+"   |   ")
+    summary_file.write(f"{gdp_pcap_summ[1]['Min']:.2f}"+"  |  ")
+    summary_file.write(f"{gdp_pcap_summ[1]['Max']:,.2f}"+"  |  ")
+    summary_file.write(f"{gdp_pcap_summ[1]['Median']:,.2f}"+"  |  ")
+    summary_file.write(f"{gdp_pcap_summ[1]['Mean']:,.2f}"+"  |        ")
+    summary_file.write(f"{gdp_pcap_summ[0]['Number Collected From']:8.2f}" + "  |\n")
+    summary_file.write('-----------------------------------------------|-----------|--------------|------------|-------------|------------------|\n')
+    summary_file.write(" "+tech_expo_summ[0]['Data Type']+"   | ")
+    summary_file.write(f"{tech_expo_summ[1]['Min']:8.2f}"+"  |    ")
+    summary_file.write(f"{tech_expo_summ[1]['Max']:8.2f}"+"  |  ")
+    summary_file.write(f"{tech_expo_summ[1]['Median']:8.2f}"+"  |   ")
+    summary_file.write(f"{tech_expo_summ[1]['Mean']:8.2f}"+"  |        ")
+    summary_file.write(f"{tech_expo_summ[0]['Number Collected From']:8.2f}" + "  |\n")
+    summary_file.write('-----------------------------------------------|-----------|--------------|------------|-------------|------------------|\n')
+    summary_file.write(" "+udwe_child_summ[0]['Data Type']+"  | ")
+    summary_file.write(f"{udwe_child_summ[1]['Min']:8.2f}"+"  |    ")
+    summary_file.write(f"{udwe_child_summ[1]['Max']:8.2f}"+"  |  ")
+    summary_file.write(f"{udwe_child_summ[1]['Median']:8.2f}"+"  |   ")
+    summary_file.write(f"{udwe_child_summ[1]['Mean']:8.2f}"+"  |        ")
+    summary_file.write(f"{udwe_child_summ[0]['Number Collected From']:8.2f}" + "  |\n")
+    summary_file.write('-----------------------------------------------|-----------|--------------|------------|-------------|------------------|\n')
+    summary_file.write(" "+pov_ratio_summ[0]['Data Type']+"      | ")
+    summary_file.write(f"{pov_ratio_summ[1]['Min']:8.2f}"+"  |    ")
+    summary_file.write(f"{pov_ratio_summ[1]['Max']:8.2f}"+"  |  ")
+    summary_file.write(f"{pov_ratio_summ[1]['Median']:8.2f}"+"  |   ")
+    summary_file.write(f"{pov_ratio_summ[1]['Mean']:8.2f}"+"  |        ")
+    summary_file.write(f"{pov_ratio_summ[0]['Number Collected From']:8.2f}" + "  |\n")
+    summary_file.write('-------------------------------------------------------------------------------------------------------------------------')
+    summary_file.close()
+
+    pass
+
+
+def get_qual_data():
+    # Life Expectancy at Birth
+    load_qual_data_list(le_total, le_total_summ)
+    # GDP per Capita (current US$)
+    load_qual_data_list(gdp_pcap, gdp_pcap_summ)
+    # High-technology exports (% of manufactured exports)
+    load_qual_data_list(tech_expo, tech_expo_summ)
+    # Prevalence of underweight, weight for age (% of children under 5)
+    load_qual_data_list(udwe_child, udwe_child_summ)
+    # Poverty headcount ratio at national poverty lines (% of population)
+    load_qual_data_list(pov_ratio, pov_ratio_summ)
+
+    pass
+
+
+def load_qual_data_list(proc_data_list, quant_data_list):
+
+    countries_collected = 0
+    for country_info in proc_data_list:
+        some_data = False
+        for i in range(16):
+            if i < 10:
+                if country_info[f"200{i}"] != "..":
+                    some_data = True
+            else:
+                if country_info[f"20{i}"] != "..":
+                    some_data = True
+        if some_data:
+            countries_collected += 1
+
+    quant_data_list[0]['Number Collected From'] = countries_collected
 
     pass
 
 
 def get_quant_data():
     # Life Expectancy at Birth
-    load_quant_data_list(le_total, le_total_quant, 0)
+    load_quant_data_list(le_total, le_total_summ, 0)
     # GDP per Capita (current US$)
-    load_quant_data_list(gdp_pcap, gdp_pcap_quant, 1)
+    load_quant_data_list(gdp_pcap, gdp_pcap_summ, 1)
     # High-technology exports (% of manufactured exports)
-    load_quant_data_list(tech_expo, tech_expo_quant, 2)
+    load_quant_data_list(tech_expo, tech_expo_summ, 2)
     # Prevalence of underweight, weight for age (% of children under 5)
-    load_quant_data_list(udwe_child, udwe_child_quant, 3)
+    load_quant_data_list(udwe_child, udwe_child_summ, 3)
     # Poverty headcount ratio at national poverty lines (% of population)
-    load_quant_data_list(pov_ratio, pov_ratio_quant, 4)
+    load_quant_data_list(pov_ratio, pov_ratio_summ, 4)
 
     pass
 
@@ -70,15 +172,15 @@ def load_quant_data_list(proc_data_list, quant_data_list, indic):
 
     match indic:
         case 0:
-            setup_quant_data_list(proc_data_list, quant_data_list, 'Life Expectancy from Birth')
+            setup_quant_data_list(proc_data_list, quant_data_list, 'Life Expectancy from Birth (years)')
         case 1:
-            setup_quant_data_list(proc_data_list, quant_data_list, 'GDP per Capita (current US$)')
+            setup_quant_data_list(proc_data_list, quant_data_list, 'Gross Domestic Product GDP per capita (US$)')
         case 2:
-            setup_quant_data_list(proc_data_list, quant_data_list, 'High-technology exports (% of manufactured exports)')
+            setup_quant_data_list(proc_data_list, quant_data_list, 'High-Technology (% of manufactured exports)')
         case 3:
-            setup_quant_data_list(proc_data_list, quant_data_list, 'Prevalence of underweight, weight for age (% of children under 5)')
+            setup_quant_data_list(proc_data_list, quant_data_list, 'Underweight Children (% of children under 5)')
         case 4:
-            setup_quant_data_list(proc_data_list, quant_data_list, 'Poverty headcount ratio at national poverty lines (% of population)')
+            setup_quant_data_list(proc_data_list, quant_data_list, 'National Poverty Ratio (% of population)')
 
     get_min(proc_data_list, quant_data_list)
     get_max(proc_data_list, quant_data_list)
@@ -229,7 +331,7 @@ def load_processed_data():
 def read_processed(file_name, append_list):
 
     # read from processed data file and add data to a list
-    with open(f"./data_processing/{file_name}") as csvfile:
+    with open(f"./data_processed/{file_name}") as csvfile:
         reader = csv.DictReader(csvfile)
         for row in reader:
             add_dict = dict()
@@ -260,6 +362,17 @@ def display_list(pass_list):
     i = 0
     for row in pass_list:
         print(i, row)
+        i += 1
+
+    pass
+
+def remove_from_list(remove_type, remove_id, remove_list):
+
+    i = 0
+    for country_info in remove_list:
+        if country_info[remove_type] == remove_id:
+            del remove_list[i]
+            return
         i += 1
 
     pass

@@ -13,15 +13,15 @@ def process_data(input_filename):
     with open(input_filename) as csvfile:
         reader = csv.DictReader(csvfile)
         new_fieldnames = "Country Name,Country Code,2000,2001,2002,2003,2004,2005,2006,2007,2008,2009,2010,2011,2012,2013,2014,2015\n"
-        life_expectancy_file = open("./data_processing/life_expectancy.csv", "w")
+        life_expectancy_file = open("data_processed/life_expectancy.csv", "w")
         life_expectancy_file.write(new_fieldnames)
-        gdp_per_capita_file = open("./data_processing/gdp_per_capita.csv", "w")
+        gdp_per_capita_file = open("data_processed/gdp_per_capita.csv", "w")
         gdp_per_capita_file.write(new_fieldnames)
-        tech_exports_file = open("./data_processing/tech_exports.csv", "w")
+        tech_exports_file = open("data_processed/tech_exports.csv", "w")
         tech_exports_file.write(new_fieldnames)
-        underweight_children_file = open("./data_processing/underweight_children.csv", "w")
+        underweight_children_file = open("data_processed/underweight_children.csv", "w")
         underweight_children_file.write(new_fieldnames)
-        poverty_ratio_file = open("./data_processing/poverty_ratio.csv", "w")
+        poverty_ratio_file = open("data_processed/poverty_ratio.csv", "w")
         poverty_ratio_file.write(new_fieldnames)
         for row in reader:
             # Life expectancy at birth
