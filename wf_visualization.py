@@ -6,6 +6,8 @@ __author__ = "John Garvey"
 __date__ = "10/14/2023"
 __assignment = "Project MS03"
 
+# NUMBER OF COUNTRIES IN DATASET
+NUMB_COUNTRIES = 217
 # life expectancy data and quantitative data lists
 le_total = []
 le_total_summ = []
@@ -21,34 +23,38 @@ udwe_child_summ = []
 # poverty percentage for population data and quantitative data lists
 pov_ratio = []
 pov_ratio_summ = []
+# all correlations data list
+all_correlations = []
+
 
 
 def visualize_data():
 
-    # TODO
+    # TODO Main Visualization Process
     load_processed_data()
 
     #########################################################################
-    ############### PANAMA OUTLIER DATA REMOVED FOR TECH EXPO ###############
+    """              PANAMA OUTLIER DATA REMOVED FOR TECH EXPO            """
     remove_from_list("Country Name", "Panama", tech_expo)
     #########################################################################
 
     get_quant_data()
     get_qual_data()
     write_data_table()
-    get_coors()
+    get_correlations()
 
-    print("Number of Countries is", len(le_total))
-    print("Life Expectancy in", le_total[206]['Country Name'], le_total[206]['Country Code'], "in 2015 is", int(float(le_total[206]['2015'])), "years old")
-    print("GDP per Capita in", gdp_pcap[41]['Country Name'], gdp_pcap[41]['Country Code'], f"in 2015 is ${float(gdp_pcap[41]['2015']):.2f} US dollars")
-    print("High-technology exports in", tech_expo[103]['Country Name'], tech_expo[103]['Country Code'], f"in 2015 is {float(tech_expo[103]['2015']):.1f} (% of manufactured exports)")
-    print("Prevalence of underweight, weight for age", udwe_child[211]['Country Name'], udwe_child[211]['Country Code'], f"in 2015 is {udwe_child[211]['2015']} (% of children under 5)")
-    print("Poverty headcount ratio at national poverty lines", pov_ratio[210]['Country Name'], pov_ratio[210]['Country Code'], f"in 2015 is {pov_ratio[210]['2015']} (% of population)")
+    """ PRIMITIVE TESTS """
+    # print("Number of Countries is", len(le_total))
+    # print("Life Expectancy in", le_total[206]['Country Name'], le_total[206]['Country Code'], "in 2015 is", int(float(le_total[206]['2015'])), "years old")
+    # print("GDP per Capita in", gdp_pcap[41]['Country Name'], gdp_pcap[41]['Country Code'], f"in 2015 is ${float(gdp_pcap[41]['2015']):.2f} US dollars")
+    # print("High-technology exports in", tech_expo[103]['Country Name'], tech_expo[103]['Country Code'], f"in 2015 is {float(tech_expo[103]['2015']):.1f} (% of manufactured exports)")
+    # print("Prevalence of underweight, weight for age", udwe_child[211]['Country Name'], udwe_child[211]['Country Code'], f"in 2015 is {udwe_child[211]['2015']} (% of children under 5)")
+    # print("Poverty headcount ratio at national poverty lines", pov_ratio[210]['Country Name'], pov_ratio[210]['Country Code'], f"in 2015 is {pov_ratio[210]['2015']} (% of population)")
 
-    display_list(le_total)
-    display_list(gdp_pcap)
-    display_list(tech_expo)
-    display_list(udwe_child)
+    # display_list(le_total)
+    # display_list(gdp_pcap)
+    # display_list(tech_expo)
+    # display_list(udwe_child)
 
     # display_list(le_total_summ)
     # display_list(gdp_pcap_summ)
@@ -59,24 +65,183 @@ def visualize_data():
     pass
 
 
-def get_coors():
+def get_correlations():
 
-    # TODO
-    ### FIND CORRELATION BETWEEN LIFE EXPECTACY AND GDP FIRST
-    d1 = le_total_summ[1]
-    print(d1)
-    d2 = gdp_pcap_summ[1]
-    print(d2)
+    # TODO: Get the pairwise correlations for all countries for each of the categories
+    # TODO: Then get the global means for the pairwise correlations for each of the categories
+    # TODO: First find pairwise correlations for the Life Expectancy (LE) and GDP for each country
+    # TODO: Then save these correlations in a dictionary for each country in the all_correlations list
+    # TODO: Then repeat this process find and store all the pairwise correlations for each category in order below
+    # TODO: Find the global means for each of the pairwise correlations from all the countries
+    # TODO: Outputs the global mean pairwise correlations into a table in data_processed/correlations.txt
+    """
+        Acronyms :
+            Life Expectancy from Birth = LEB
+            Gross Domestic Product = GDP
+            High-Technology Exports = HTE
+            Underweight Children = UWC
+            National Poverty Ratio = NPR
+
+        Steps:
+            1.   LEB_GDP
+            2.   LEB_HTE
+            3.   LEB_UWC
+            4.   LEB_NPR
+            5.   GDP_HTE
+            6.   GDP_UWC
+            7.   GDP_NPR
+            8.   HTE_UWC
+            9.   HTE_NPR
+            10.  UWC_NPR
+
+        Dictionaries Layout (e.x. index=0):
+            {'Country Name': 'All Countries',
+             'LEB_GDP': Global Mean,
+             'LEB_HTE': Global Mean,
+             'LEB_UWC': Global Mean,
+             'LEB_NPR': Global Mean,
+             'GDP_HTE': Global Mean,
+             'GDP_UWC': Global Mean,
+             'GDP_NPR': Global Mean,
+             'HTE_UWC': Global Mean,
+             'HTE_NPR': Global Mean,
+             'UWC_NPR': Global Mean,
+             }
+
+         Data Lists :
+             all_correlations - stores all pairwise correlations for each country
+             le_total - contains the variables for correlations
+             le_total_summ - contains the means for the variables
+             gdp_pcap
+             gdp_pcap_summ
+             tech_expo
+             tech_expo_summ
+             udwe_child
+             udwe_child_summ
+             pov_ratio
+             pov_ratio_summ
+    """
+
+    # : Setup correlation data list
+    setup_correlations_data_list()
+    # LEB_GDP
+    find_correlations_for(le_total, le_total_summ, "LEB", gdp_pcap, gdp_pcap_summ, "GDP")
 
 
     pass
+
+
+def setup_correlations_data_list():
+
+    all_correlations.append({'Country Name': 'All Countries',
+                             'LEB_GDP': None,
+                             'LEB_HTE': None,
+                             'LEB_UWC': None,
+                             'LEB_NPR': None,
+                             'GDP_HTE': None,
+                             'GDP_UWC': None,
+                             'GDP_NPR': None,
+                             'HTE_UWC': None,
+                             'HTE_NPR': None,
+                             'UWC_NPR': None})
+
+    for i in range(NUMB_COUNTRIES):
+        all_correlations.append({'Country Name': le_total[i]['Country Name'],
+                                 'LEB_GDP': None,
+                                 'LEB_HTE': None,
+                                 'LEB_UWC': None,
+                                 'LEB_NPR': None,
+                                 'GDP_HTE': None,
+                                 'GDP_UWC': None,
+                                 'GDP_NPR': None,
+                                 'HTE_UWC': None,
+                                 'HTE_NPR': None,
+                                 'UWC_NPR': None})
+
+    pass
+
+
+def find_correlations_for(proc_data_list_x, has_means_x, indic_x, proc_data_list_y, has_means_y, indic_y):
+
+    for i in range(NUMB_COUNTRIES):
+        correlation = get_correlation(proc_data_list_x[i], has_means_x[i+2]['Mean'], proc_data_list_y[i], has_means_y[i+2]['Mean'])
+        # TODO: Store country's correlation in correlation data list in appropriate field
+        print(correlation)
+
+
+
+    pass
+
+
+def get_correlation(country_dict_x, country_mean_x, country_dict_y, country_mean_y):
+
+    # If one of means for the data lists for the country is None that means they have 0 values in that data list so skip
+    if country_mean_x is not None and country_mean_y is not None:
+        diff_mean_values_x = []
+        diff_mean_values_y = []
+
+        # for year 2000 to 2015 only use values in years which are not blank for both data lists
+        for i in range(16):
+            if i < 10:
+                if country_dict_x[f"200{i}"] != ".." and country_dict_y[f"200{i}"] != "..":
+                    diff_mean_values_x.append(float(country_dict_x[f"200{i}"]) - country_mean_x)
+                    diff_mean_values_y.append(float(country_dict_y[f"200{i}"]) - country_mean_y)
+            else:
+                if country_dict_x[f"20{i}"] != ".." and country_dict_y[f"20{i}"] != "..":
+                    diff_mean_values_x.append(float(country_dict_x[f"20{i}"]) - country_mean_x)
+                    diff_mean_values_y.append(float(country_dict_y[f"20{i}"]) - country_mean_y)
+
+        if len(diff_mean_values_x) > 1 and len(diff_mean_values_y) > 1:
+            sigma_x = get_sigma(diff_mean_values_x)
+            sigma_y = get_sigma(diff_mean_values_y)
+            covariance = get_covariance(diff_mean_values_x, diff_mean_values_y)
+            pearson_correlation = covariance / (sigma_x * sigma_y)
+
+            """ PRIMITIVE TESTS """
+            # print(country_dict_x)
+            # print("Mean: ", country_mean_x)
+            # print(diff_mean_values_x)
+            # print("Sigma: ", sigma_x)
+            #
+            # print(country_dict_y)
+            # print("Mean: ", country_mean_y)
+            # print(diff_mean_values_y)
+            # print("Sigma: ", sigma_y)
+            #
+            # print("Covariance: ", covariance)
+            # print("Pearson Correlation: ", pearson_correlation, "\n")
+
+            return pearson_correlation
+        else:
+            return None
+    else:
+        return None
+
+    pass
+
+
+def get_covariance(diff_mean_values_x, diff_mean_values_y):
+
+    values_to_sum = []
+    for i in range(len(diff_mean_values_x)):
+        values_to_sum.append(diff_mean_values_x[i] * diff_mean_values_y[i])
+    covariance = sum(values_to_sum)
+    return covariance
+
+
+def get_sigma(diff_mean_values):
+
+    squared_values = [n**2 for n in diff_mean_values]
+    sum_of_squares = sum(squared_values)
+    sigma = sum_of_squares ** (1/2)
+    return sigma
 
 
 def write_data_table():
 
     summary_file = open("data_processed/summary.txt", "w")
     summary_file.write('=========================================================================================================================\n')
-    summary_file.write(' Dataset Information                           |      Min  |         Max  |    Median  |       Mean  |  Collected From  |\n')
+    summary_file.write(' Summary Datasets Information For 2000-2015    |      Min  |         Max  |    Median  |       Mean  |  Collected From  |\n')
     summary_file.write('=========================================================================================================================\n')
     summary_file.write(" "+le_total_summ[0]['Data Type']+"            | ")
     summary_file.write(f"{le_total_summ[1]['Min']:8.2f}"+"  |    ")
@@ -365,6 +530,7 @@ def display_list(pass_list):
         i += 1
 
     pass
+
 
 def remove_from_list(remove_type, remove_id, remove_list):
 
