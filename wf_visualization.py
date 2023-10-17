@@ -35,14 +35,14 @@ def visualize_data():
 
     #########################################################################
     """              PANAMA OUTLIER DATA REMOVED FOR TECH EXPO            """
-    remove_from_list("Country Name", "Panama", tech_expo)
+    remove_data_from_list("Country Name", "Panama", tech_expo)
     #########################################################################
 
     get_quant_data()
     get_qual_data()
-    write_data_table()
+    write_summary_data_table()
     get_correlations()
-
+    write_correlations_data_table()
     """ PRIMITIVE TESTS """
     # print("Number of Countries is", len(le_total))
     # print("Life Expectancy in", le_total[206]['Country Name'], le_total[206]['Country Code'], "in 2015 is", int(float(le_total[206]['2015'])), "years old")
@@ -62,18 +62,49 @@ def visualize_data():
     # display_list(udwe_child_summ)
     # display_list(pov_ratio_summ)
 
+    # display_list(all_correlations)
+
+    pass
+
+
+def write_correlations_data_table():
+
+    # : Outputs the global mean pairwise correlations into a table in data_processed/correlations.txt
+    correlations_file = open("data_processed/correlations.txt", "w")
+    correlations_file.write('=======================================================================|\n')
+    correlations_file.write("                  Global Correlation Data For 2000-2015                |\n")
+    correlations_file.write('=======================================================================|\n')
+    correlations_file.write(" Acronyms:                                                             |\n"
+                            "  LEB = Life Expectancy from Birth                                     |\n"
+                            "  GDP = Gross Domestic Product                                         |\n"
+                            "  HTE = High-Technology Exports                                        |\n"
+                            "  UWC = Underweight Children                                           |\n"
+                            "  NPR = National Poverty Ratio                                         |\n")
+    correlations_file.write('=======================================================================|\n')
+    correlations_file.write('           |    LEB    |    GDP    |    HTE    |    UWC    |    NPR    |\n')
+    correlations_file.write('-----------------------------------------------------------------------|\n')
+    correlations_file.write('    LEB    |   1.000   |           |           |           |           |\n')
+    correlations_file.write('-----------------------------------------------------------------------|\n')
+    correlations_file.write(f'    GDP    |   {all_correlations[0]["LEB_GDP"]:.3f}   |   1.000   |           |           |           |\n')
+    correlations_file.write('-----------------------------------------------------------------------|\n')
+    correlations_file.write(f'    HTE    |   {all_correlations[0]["LEB_HTE"]:.3f}   |  {all_correlations[0]["GDP_HTE"]:.3f}   |   1.000   |           |           |\n')
+    correlations_file.write('-----------------------------------------------------------------------|\n')
+    correlations_file.write(f'    UWC    |  {all_correlations[0]["LEB_UWC"]:.3f}   |  {all_correlations[0]["GDP_UWC"]:.3f}   |  {all_correlations[0]["HTE_UWC"]:.3f}   |   1.000   |           |\n')
+    correlations_file.write('-----------------------------------------------------------------------|\n')
+    correlations_file.write(f'    NPR    |  {all_correlations[0]["LEB_NPR"]:.3f}   |  {all_correlations[0]["GDP_NPR"]:.3f}   |   {all_correlations[0]["HTE_NPR"]:.3f}   |   {all_correlations[0]["UWC_NPR"]:.3f}   |   1.000   |\n')
+    correlations_file.write('-----------------------------------------------------------------------|\n')
+    correlations_file.close()
+
     pass
 
 
 def get_correlations():
 
-    # TODO: Get the pairwise correlations for all countries for each of the categories
-    # TODO: Then get the global means for the pairwise correlations for each of the categories
-    # TODO: First find pairwise correlations for the Life Expectancy (LE) and GDP for each country
-    # TODO: Then save these correlations in a dictionary for each country in the all_correlations list
-    # TODO: Then repeat this process find and store all the pairwise correlations for each category in order below
-    # TODO: Find the global means for each of the pairwise correlations from all the countries
-    # TODO: Outputs the global mean pairwise correlations into a table in data_processed/correlations.txt
+    # : Get the pairwise correlations for all countries for each of the categories
+    # : Then get the global means for the pairwise correlations for each of the categories
+    # : First find pairwise correlations for the Life Expectancy (LE) and GDP for each country
+    # : Then save these correlations in a dictionary for each country in the all_correlations list
+    # : Then repeat this process find and store all the pairwise correlations for each category in order below
     """
         Acronyms :
             Life Expectancy from Birth = LEB
@@ -94,21 +125,7 @@ def get_correlations():
             9.   HTE_NPR
             10.  UWC_NPR
 
-        Dictionaries Layout (e.x. index=0):
-            {'Country Name': 'All Countries',
-             'LEB_GDP': Global Mean,
-             'LEB_HTE': Global Mean,
-             'LEB_UWC': Global Mean,
-             'LEB_NPR': Global Mean,
-             'GDP_HTE': Global Mean,
-             'GDP_UWC': Global Mean,
-             'GDP_NPR': Global Mean,
-             'HTE_UWC': Global Mean,
-             'HTE_NPR': Global Mean,
-             'UWC_NPR': Global Mean,
-             }
-
-         Data Lists :
+        Data Lists :
              all_correlations - stores all pairwise correlations for each country
              le_total - contains the variables for correlations
              le_total_summ - contains the means for the variables
@@ -120,13 +137,75 @@ def get_correlations():
              udwe_child_summ
              pov_ratio
              pov_ratio_summ
+
+        Dictionary Fields (e.x. index=0):
+            {'Country Name': 'All Countries',
+             'LEB_GDP': Global Mean,
+             'LEB_HTE': Global Mean,
+             'LEB_UWC': Global Mean,
+             'LEB_NPR': Global Mean,
+             'GDP_HTE': Global Mean,
+             'GDP_UWC': Global Mean,
+             'GDP_NPR': Global Mean,
+             'HTE_UWC': Global Mean,
+             'HTE_NPR': Global Mean,
+             'UWC_NPR': Global Mean,
+            }
     """
 
     # : Setup correlation data list
     setup_correlations_data_list()
-    # LEB_GDP
-    find_correlations_for(le_total, le_total_summ, "LEB", gdp_pcap, gdp_pcap_summ, "GDP")
+    # Load correlation data
+    find_correlations_for(le_total, le_total_summ, gdp_pcap, gdp_pcap_summ, "LEB_GDP")
+    find_correlations_for(le_total, le_total_summ, tech_expo, tech_expo_summ, "LEB_HTE")
+    find_correlations_for(le_total, le_total_summ, udwe_child, udwe_child_summ, "LEB_UWC")
+    find_correlations_for(le_total, le_total_summ, pov_ratio, pov_ratio_summ, "LEB_NPR")
+    find_correlations_for(gdp_pcap, gdp_pcap_summ, tech_expo, tech_expo_summ, "GDP_HTE")
+    find_correlations_for(gdp_pcap, gdp_pcap_summ, udwe_child, udwe_child_summ, "GDP_UWC")
+    find_correlations_for(gdp_pcap, gdp_pcap_summ, pov_ratio, pov_ratio_summ, "GDP_NPR")
+    find_correlations_for(tech_expo, tech_expo_summ, udwe_child, udwe_child_summ, "HTE_UWC")
+    find_correlations_for(tech_expo, tech_expo_summ, pov_ratio, pov_ratio_summ, "HTE_NPR")
+    find_correlations_for(udwe_child, udwe_child_summ, pov_ratio, pov_ratio_summ, "UWC_NPR")
+    # Get the mean from all countries correlations and save as global correlations
+    get_global_correlations()
 
+    pass
+
+
+def get_global_correlations():
+
+    # : Find and add the global means for each of the pairwise correlations from all the countries
+    # print(all_correlations[0])
+    add_global_corr_means('LEB_GDP')
+    add_global_corr_means('LEB_HTE')
+    add_global_corr_means('LEB_UWC')
+    add_global_corr_means('LEB_NPR')
+    add_global_corr_means('GDP_HTE')
+    add_global_corr_means('GDP_UWC')
+    add_global_corr_means('GDP_NPR')
+    add_global_corr_means('HTE_UWC')
+    add_global_corr_means('HTE_NPR')
+    add_global_corr_means('UWC_NPR')
+    # print(all_correlations[0])
+
+    pass
+
+
+def add_global_corr_means(key_name):
+
+    sum_values = []
+    n = 0
+    for i in range(len(all_correlations)):
+        if all_correlations[i][key_name] is not None:
+            # print(key_name, ": ", all_correlations[i][key_name])
+            sum_values.append(all_correlations[i][key_name])
+            n += 1
+
+    sum_of_values = sum(sum_values)
+    if n != 0:
+        mean = sum_of_values / n
+
+    all_correlations[0][key_name] = mean
 
     pass
 
@@ -161,14 +240,12 @@ def setup_correlations_data_list():
     pass
 
 
-def find_correlations_for(proc_data_list_x, has_means_x, indic_x, proc_data_list_y, has_means_y, indic_y):
+def find_correlations_for(proc_data_list_x, has_means_x, proc_data_list_y, has_means_y, indic):
 
     for i in range(NUMB_COUNTRIES):
         correlation = get_correlation(proc_data_list_x[i], has_means_x[i+2]['Mean'], proc_data_list_y[i], has_means_y[i+2]['Mean'])
-        # TODO: Store country's correlation in correlation data list in appropriate field
-        print(correlation)
-
-
+        # : Store country's correlation in correlation data list in appropriate field
+        all_correlations[i + 1][indic] = correlation
 
     pass
 
@@ -237,7 +314,7 @@ def get_sigma(diff_mean_values):
     return sigma
 
 
-def write_data_table():
+def write_summary_data_table():
 
     summary_file = open("data_processed/summary.txt", "w")
     summary_file.write('=========================================================================================================================\n')
@@ -532,13 +609,16 @@ def display_list(pass_list):
     pass
 
 
-def remove_from_list(remove_type, remove_id, remove_list):
+def remove_data_from_list(key_name, remove_id, remove_list):
 
-    i = 0
     for country_info in remove_list:
-        if country_info[remove_type] == remove_id:
-            del remove_list[i]
+        if country_info[key_name] == remove_id:
+            # print(country_info)
+            for i in range(16):
+                if i < 10:
+                    country_info[f"200{i}"] = ".."
+                else:
+                    country_info[f"20{i}"] = ".."
+            # print(country_info)
             return
-        i += 1
-
     pass
