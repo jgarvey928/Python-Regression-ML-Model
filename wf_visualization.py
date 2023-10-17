@@ -1,7 +1,5 @@
 # INSTALLED matplotlib
 import matplotlib.pylab as plt
-# INSTALLED numpy
-import numpy as np
 import csv
 
 __author__ = "John Garvey"
@@ -31,7 +29,7 @@ all_correlations = []
 
 def visualize_data():
 
-    # TODO Main Visualization Process
+    # Main Visualization Process
     load_processed_data()
 
     #############################################################################
@@ -71,7 +69,7 @@ def visualize_data():
 
 def create_scatter_plots():
 
-    # TODO: Create scatter plots for all pairs of quantitative features that you selected.
+    # : Create scatter plots for all pairs of quantitative features that you selected.
     #  For example, if you have quantitative features A, B, and C, you will construct AB, AC, and BC.
     #  output should be saved to visuals\*.png where * represents different filenames of your choice.
     #  plot the MEANS for all pair categories of data i.e. LEB, GDP, HTE, UWC, NPR
