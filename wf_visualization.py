@@ -1,5 +1,7 @@
-# import matplotlib.pylab as plt
-# import numpy as np
+# INSTALLED matplotlib
+import matplotlib.pylab as plt
+# INSTALLED numpy
+import numpy as np
 import csv
 
 __author__ = "John Garvey"
@@ -27,22 +29,22 @@ pov_ratio_summ = []
 all_correlations = []
 
 
-
 def visualize_data():
 
     # TODO Main Visualization Process
     load_processed_data()
 
-    #########################################################################
-    """              PANAMA OUTLIER DATA REMOVED FOR TECH EXPO            """
+    #############################################################################
+    """                PANAMA OUTLIER DATA REMOVED FOR TECH EXPO              """
     remove_data_from_list("Country Name", "Panama", tech_expo)
-    #########################################################################
+    #############################################################################
 
     get_quant_data()
     get_qual_data()
     write_summary_data_table()
     get_correlations()
     write_correlations_data_table()
+    create_scatter_plots()
     """ PRIMITIVE TESTS """
     # print("Number of Countries is", len(le_total))
     # print("Life Expectancy in", le_total[206]['Country Name'], le_total[206]['Country Code'], "in 2015 is", int(float(le_total[206]['2015'])), "years old")
@@ -63,6 +65,66 @@ def visualize_data():
     # display_list(pov_ratio_summ)
 
     # display_list(all_correlations)
+
+    pass
+
+
+def create_scatter_plots():
+
+    # TODO: Create scatter plots for all pairs of quantitative features that you selected.
+    #  For example, if you have quantitative features A, B, and C, you will construct AB, AC, and BC.
+    #  output should be saved to visuals\*.png where * represents different filenames of your choice.
+    #  plot the MEANS for all pair categories of data i.e. LEB, GDP, HTE, UWC, NPR
+
+    # LEB_GDP = le_total_summ, gdp_pcap_summ
+    create_pair_plot(le_total_summ, gdp_pcap_summ, "LEB_GDP", "Life Expectancy VS GDP")
+
+    # LEB_HTE = le_total_summ, tech_expo_summ
+    create_pair_plot(le_total_summ, tech_expo_summ, "LEB_HTE", "Life Expectancy VS Technology Export Perc.")
+
+    # LEB_UWC = le_total_summ, udwe_child_summ
+    create_pair_plot(le_total_summ, udwe_child_summ, "LEB_UWC", "Life Expectancy VS Underweight Children")
+
+    # LEB_NPR = le_total_summ, pov_ratio_summ
+    create_pair_plot(le_total_summ, pov_ratio_summ, "LEB_NPR", "Life Expectancy VS National Poverty Ratio")
+
+    # GDP_HTE = gdp_pcap_summ, tech_expo_summ
+    create_pair_plot(gdp_pcap_summ, tech_expo_summ, "GDP_HTE", "GDP VS Technology Export Perc.")
+
+    # GDP_UWC = gdp_pcap_summ, udwe_child_summ
+    create_pair_plot(gdp_pcap_summ, udwe_child_summ, "GDP_UWC", "GDP VS Underweight Children")
+
+    # GDP_NPR = gdp_pcap_summ, pov_ratio_summ
+    create_pair_plot(gdp_pcap_summ, pov_ratio_summ, "GDP_NPR", "GDP VS National Poverty Ratio")
+
+    # HTE_UWC = tech_expo_summ, udwe_child_summ
+    create_pair_plot(tech_expo_summ, udwe_child_summ, "HTE_UWC", "Technology Export Perc. VS Underweight Children")
+
+    # HTE_NPR = tech_expo_summ, pov_ratio_summ
+    create_pair_plot(tech_expo_summ, pov_ratio_summ, "HTE_NPR", "Technology Export Perc. VS National Poverty Ratio")
+
+    # UWC_NPR = udwe_child_summ, pov_ratio_summ
+    create_pair_plot(udwe_child_summ, pov_ratio_summ, "UWC_NPR", "Underweight Children VS National Poverty Ratio")
+
+    pass
+
+
+def create_pair_plot(summ_data_y, summ_data_x, indic, title):
+
+    data_means_x = []
+    data_means_y = []
+
+    for i in range(2, NUMB_COUNTRIES):
+        data_means_x.append(summ_data_x[i]['Mean'])
+        data_means_y.append(summ_data_y[i]['Mean'])
+
+    # display_list(data_means_x)
+    # display_list(data_means_y)
+
+    fig, ax = plt.subplots()
+    ax.set(title=title, ylabel=summ_data_y[0]["Data Type"], xlabel=summ_data_x[0]["Data Type"])
+    ax.scatter(data_means_x, data_means_y)
+    fig.savefig(f"visuals/{title.lower().replace(' ' ,'_')}.png")
 
     pass
 
