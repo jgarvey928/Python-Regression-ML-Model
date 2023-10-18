@@ -1,5 +1,6 @@
 # INSTALLED matplotlib
 import matplotlib.pylab as plt
+
 import csv
 
 __author__ = "John Garvey"
@@ -8,6 +9,8 @@ __assignment = "Project MS03"
 
 # NUMBER OF COUNTRIES IN DATASET
 NUMB_COUNTRIES = 217
+# NUMBER OF DATA CATEGORIES
+NUMB_CATEGORIES = 5
 # life expectancy data and quantitative data lists
 le_total = []
 le_total_summ = []
@@ -43,6 +46,10 @@ def visualize_data():
     get_correlations()
     write_correlations_data_table()
     create_scatter_plots()
+
+    # TODO Create a histogram for qualitative data
+    create_histogram()
+
     """ PRIMITIVE TESTS """
     # print("Number of Countries is", len(le_total))
     # print("Life Expectancy in", le_total[206]['Country Name'], le_total[206]['Country Code'], "in 2015 is", int(float(le_total[206]['2015'])), "years old")
@@ -67,6 +74,44 @@ def visualize_data():
     pass
 
 
+def create_histogram():
+
+    # le_total_summ = LEB
+    # gdp_pcap_summ = GDP
+    # tech_expo_summ = HTE
+    # udwe_child_summ = UWC
+    # pov_ratio_summ = NPR
+
+    numbers_collected = [
+        le_total_summ[0]["Number Collected From"],
+        gdp_pcap_summ[0]["Number Collected From"],
+        tech_expo_summ[0]["Number Collected From"],
+        udwe_child_summ[0]["Number Collected From"],
+        pov_ratio_summ[0]["Number Collected From"],
+    ]
+
+    category_types = ["LEB", "GDP", "HTE", "UWC", "NPR"]
+
+    fig, ax = plt.subplots()
+    ax.set(title=r'Data Category Sample Sizes ', ylabel='Number of Countries Collectd From', xlabel="Data Categories")
+    bars = ax.bar(category_types, numbers_collected)
+    bars[0].set_color('green')
+    bars[0].set_label("LEB = "+le_total_summ[0]["Data Type"])
+    bars[1].set_color('red')
+    bars[1].set_label("GDP = "+gdp_pcap_summ[0]["Data Type"])
+    bars[2].set_color('purple')
+    bars[2].set_label("HTE = "+tech_expo_summ[0]["Data Type"])
+    bars[3].set_color('orange')
+    bars[3].set_label("UWC = "+udwe_child_summ[0]["Data Type"])
+    bars[4].set_color('blue')
+    bars[4].set_label("NPR = "+pov_ratio_summ[0]["Data Type"])
+    ax.bar_label(bars, fmt='%.2f')
+    ax.legend(loc='lower right')
+    fig.savefig("visuals/categories_sample_size.png")
+
+    pass
+
+
 def create_scatter_plots():
 
     # : Create scatter plots for all pairs of quantitative features that you selected.
@@ -75,39 +120,51 @@ def create_scatter_plots():
     #  plot the MEANS for all pair categories of data i.e. LEB, GDP, HTE, UWC, NPR
 
     # LEB_GDP = le_total_summ, gdp_pcap_summ
-    create_pair_plot(le_total_summ, gdp_pcap_summ, "LEB_GDP", "Life Expectancy VS GDP")
+    create_pair_plot(le_total_summ, gdp_pcap_summ, "LEB_GDP")
 
     # LEB_HTE = le_total_summ, tech_expo_summ
-    create_pair_plot(le_total_summ, tech_expo_summ, "LEB_HTE", "Life Expectancy VS Technology Export Perc.")
+    create_pair_plot(le_total_summ, tech_expo_summ, "LEB_HTE")
 
     # LEB_UWC = le_total_summ, udwe_child_summ
-    create_pair_plot(le_total_summ, udwe_child_summ, "LEB_UWC", "Life Expectancy VS Underweight Children")
+    create_pair_plot(le_total_summ, udwe_child_summ, "LEB_UWC")
 
     # LEB_NPR = le_total_summ, pov_ratio_summ
-    create_pair_plot(le_total_summ, pov_ratio_summ, "LEB_NPR", "Life Expectancy VS National Poverty Ratio")
+    """ 
+    There is noticeable difference between the plot and the correlation
+    The correlation is -0.324 but the plot seems to suggest a much stronger
+    negative correlation. This is because the plot is using all every countries
+    mean life expectancy and mean poverty ratio which shows a stronger correlation.
+    Each countries correlation is calculated from the matching data in each year for both 
+    life expectancy and  poverty ratio, if there is no data in each matching year then it not
+    add to the correlation calculation. Which means the calc correlation will use much fewer values
+    for its calculations. Each country may only have a couple entries for NPR so the only compare those
+    two entries with the corresponding years value for the LEB. Which means much different representations of the LEB
+    than the mean LEB of that country.
+    """
+    create_pair_plot(le_total_summ, pov_ratio_summ, "LEB_NPR")
 
     # GDP_HTE = gdp_pcap_summ, tech_expo_summ
-    create_pair_plot(gdp_pcap_summ, tech_expo_summ, "GDP_HTE", "GDP VS Technology Export Perc.")
+    create_pair_plot(gdp_pcap_summ, tech_expo_summ, "GDP_HTE")
 
     # GDP_UWC = gdp_pcap_summ, udwe_child_summ
-    create_pair_plot(gdp_pcap_summ, udwe_child_summ, "GDP_UWC", "GDP VS Underweight Children")
+    create_pair_plot(gdp_pcap_summ, udwe_child_summ, "GDP_UWC")
 
     # GDP_NPR = gdp_pcap_summ, pov_ratio_summ
-    create_pair_plot(gdp_pcap_summ, pov_ratio_summ, "GDP_NPR", "GDP VS National Poverty Ratio")
+    create_pair_plot(gdp_pcap_summ, pov_ratio_summ, "GDP_NPR")
 
     # HTE_UWC = tech_expo_summ, udwe_child_summ
-    create_pair_plot(tech_expo_summ, udwe_child_summ, "HTE_UWC", "Technology Export Perc. VS Underweight Children")
+    create_pair_plot(tech_expo_summ, udwe_child_summ, "HTE_UWC")
 
     # HTE_NPR = tech_expo_summ, pov_ratio_summ
-    create_pair_plot(tech_expo_summ, pov_ratio_summ, "HTE_NPR", "Technology Export Perc. VS National Poverty Ratio")
+    create_pair_plot(tech_expo_summ, pov_ratio_summ, "HTE_NPR")
 
     # UWC_NPR = udwe_child_summ, pov_ratio_summ
-    create_pair_plot(udwe_child_summ, pov_ratio_summ, "UWC_NPR", "Underweight Children VS National Poverty Ratio")
+    create_pair_plot(udwe_child_summ, pov_ratio_summ, "UWC_NPR")
 
     pass
 
 
-def create_pair_plot(summ_data_y, summ_data_x, indic, title):
+def create_pair_plot(summ_data_y, summ_data_x, indic):
 
     data_means_x = []
     data_means_y = []
@@ -120,9 +177,63 @@ def create_pair_plot(summ_data_y, summ_data_x, indic, title):
     # display_list(data_means_y)
 
     fig, ax = plt.subplots()
-    ax.set(title=title, ylabel=summ_data_y[0]["Data Type"], xlabel=summ_data_x[0]["Data Type"])
-    ax.scatter(data_means_x, data_means_y)
-    fig.savefig(f"visuals/{title.lower().replace(' ' ,'_')}.png")
+    match indic:
+        case "LEB_GDP":
+            title = "Life Expectancy VS GDP"
+            ax.scatter(data_means_x, data_means_y, color="red")
+            ax.set(title=title, ylabel=summ_data_y[0]["Data Type"], xlabel=summ_data_x[0]["Data Type"])
+            fig.savefig(f"visuals/{title.lower().replace(' ', '_')}.png")
+            ax.set(xlim=[0, 40000], title=title+" Focused", ylabel=summ_data_y[0]["Data Type"], xlabel=summ_data_x[0]["Data Type"])
+            fig.savefig(f"visuals/{title.lower().replace(' ', '_')}_focused.png")
+        case "LEB_HTE":
+            title = "Life Expectancy VS Technology Export Perc."
+            ax.scatter(data_means_x, data_means_y, color="green")
+            ax.set(title=title, ylabel=summ_data_y[0]["Data Type"], xlabel=summ_data_x[0]["Data Type"])
+            fig.savefig(f"visuals/{title.lower().replace(' ', '_')}.png")
+        case "LEB_UWC":
+            title = "Life Expectancy VS Underweight Children"
+            ax.scatter(data_means_x, data_means_y, color="purple")
+            ax.set(title=title, ylabel=summ_data_y[0]["Data Type"], xlabel=summ_data_x[0]["Data Type"])
+            fig.savefig(f"visuals/{title.lower().replace(' ', '_')}.png")
+        case "LEB_NPR":
+            title = "Life Expectancy VS National Poverty Ratio"
+            ax.scatter(data_means_x, data_means_y, color="hotpink")
+            ax.set(title=title, ylabel=summ_data_y[0]["Data Type"], xlabel=summ_data_x[0]["Data Type"])
+            fig.savefig(f"visuals/{title.lower().replace(' ', '_')}.png")
+        case "GDP_HTE":
+            title = "GDP VS Technology Export Perc."
+            ax.scatter(data_means_x, data_means_y, color="black")
+            ax.set(title=title, ylabel=summ_data_y[0]["Data Type"], xlabel=summ_data_x[0]["Data Type"])
+            fig.savefig(f"visuals/{title.lower().replace(' ', '_')}.png")
+        case "GDP_UWC":
+            title = "GDP VS Underweight Children"
+            ax.scatter(data_means_x, data_means_y, color="magenta")
+            ax.set(title=title, ylabel=summ_data_y[0]["Data Type"], xlabel=summ_data_x[0]["Data Type"])
+            fig.savefig(f"visuals/{title.lower().replace(' ', '_')}.png")
+            ax.set(ylim=[0, 20000], title=title+" Focused", ylabel=summ_data_y[0]["Data Type"], xlabel=summ_data_x[0]["Data Type"])
+            fig.savefig(f"visuals/{title.lower().replace(' ', '_')}_focused.png")
+        case "GDP_NPR":
+            title = "GDP VS National Poverty Ratio"
+            ax.scatter(data_means_x, data_means_y, color="blue")
+            ax.set(title=title, ylabel=summ_data_y[0]["Data Type"], xlabel=summ_data_x[0]["Data Type"])
+            fig.savefig(f"visuals/{title.lower().replace(' ', '_')}.png")
+            ax.set(ylim=[0, 20000], title=title+" Focused", ylabel=summ_data_y[0]["Data Type"], xlabel=summ_data_x[0]["Data Type"])
+            fig.savefig(f"visuals/{title.lower().replace(' ', '_')}_focused.png")
+        case "HTE_UWC":
+            title = "Technology Export Perc. VS Underweight Children"
+            ax.scatter(data_means_x, data_means_y, color="orange")
+            ax.set(title=title, ylabel=summ_data_y[0]["Data Type"], xlabel=summ_data_x[0]["Data Type"])
+            fig.savefig(f"visuals/{title.lower().replace(' ', '_')}.png")
+        case "HTE_NPR":
+            title = "Technology Export Perc. VS National Poverty Ratio"
+            ax.scatter(data_means_x, data_means_y, color="darkblue")
+            ax.set(title=title, ylabel=summ_data_y[0]["Data Type"], xlabel=summ_data_x[0]["Data Type"])
+            fig.savefig(f"visuals/{title.lower().replace(' ', '_')}.png")
+        case "UWC_NPR":
+            title = "Underweight Children VS National Poverty Ratio"
+            ax.scatter(data_means_x, data_means_y, color="brown")
+            ax.set(title=title, ylabel=summ_data_y[0]["Data Type"], xlabel=summ_data_x[0]["Data Type"])
+            fig.savefig(f"visuals/{title.lower().replace(' ', '_')}.png")
 
     pass
 
@@ -212,7 +323,6 @@ def get_correlations():
              'UWC_NPR': Global Mean,
             }
     """
-
     # : Setup correlation data list
     setup_correlations_data_list()
     # Load correlation data
@@ -228,7 +338,6 @@ def get_correlations():
     find_correlations_for(udwe_child, udwe_child_summ, pov_ratio, pov_ratio_summ, "UWC_NPR")
     # Get the mean from all countries correlations and save as global correlations
     get_global_correlations()
-
     pass
 
 
@@ -257,6 +366,7 @@ def add_global_corr_means(key_name):
     n = 0
     for i in range(len(all_correlations)):
         if all_correlations[i][key_name] is not None:
+            # SHOWS CORRELATIONS
             # print(key_name, ": ", all_correlations[i][key_name])
             sum_values.append(all_correlations[i][key_name])
             n += 1
@@ -303,6 +413,7 @@ def setup_correlations_data_list():
 def find_correlations_for(proc_data_list_x, has_means_x, proc_data_list_y, has_means_y, indic):
 
     for i in range(NUMB_COUNTRIES):
+        # print(i)
         correlation = get_correlation(proc_data_list_x[i], has_means_x[i+2]['Mean'], proc_data_list_y[i], has_means_y[i+2]['Mean'])
         # : Store country's correlation in correlation data list in appropriate field
         all_correlations[i + 1][indic] = correlation
