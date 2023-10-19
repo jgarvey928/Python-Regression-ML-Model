@@ -7,6 +7,6 @@ __assignment = "Project MS03"
 
 
 if __name__ == '__main__':
-    filename = "./data_original/TheWorldBank_PopularIndicators.csv"
+    filename = "data_original/TheWorldBank_DevelopmentIndicators.csv"
     process_data(filename)
     visualize_data()
