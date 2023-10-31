@@ -1,15 +1,15 @@
 ### SERX94: Project Proposal
-### Do People in Wealthier Countries Live Longer?
+### Do People in Wealthier Countries Live Longer? (Working Title)
 #### John Garvey
-###### 10/30/2023
+###### 09/14/2023
 
 **Keyterms:** 
 
-Life Expectancy, Development Indicators, Prosperity, Hardship
+Life Expectancy, Development Indicators, Prosperity,
 
-Developed Nations: Abundance, Modern Technology, Wealthy, Prosperity
+Developed Nations: Abundance, Modern Technology, Wealthy, 
 
-Developing Nations: Scarcity, Distressed, Poverty, Hardship
+Developing Nations: Scarcity, Distressed, Poverty
 
 **Description:** This is the second iteration of this project. For this project we will be using the vast amount of data
 found at www.worldbank.org. The datasets that we will be using are from every country in the world for the years from
@@ -67,7 +67,7 @@ whether living in a developed country actually means having a longer life.
           - Population Ratio below National Poverty Lines
           - Prevalence of Underweight Children
       4. Retrieve data - the data can be specified, and dowloaded in link below
-      5. Clean data for processing - removing access information and cleanign data for processing
+      5. Clean data for processing - removing access information and cleaning data for processing
       6. Analysis - Exploratory data analysis of quantitative and qualitative values
       7. Interpretations - Conclusions TBD
 
