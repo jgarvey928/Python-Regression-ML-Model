@@ -40,15 +40,19 @@ following contradictory notions. On one hand, the citizens of developed countrie
 they have no shortage of food or resources to keep them healthy, as well as access to modern medicines and technologies that 
 help keep them alive when they get sick or hurt. On the other hand, people that live in societies of over-abundance tend to 
 heavily suffer from health issues such as addiction and obesity. Which is reflected in the fact that the leading cause of 
-death in the USA is and has been heart disease for quite some time [1]. The flip side of this coin is that people in developing countries obviously have much more limited access to resources such as 
+death in the USA is and has been heart disease for quite some time [1]. 
+
+The flip side of this coin is that people in developing countries obviously have much more limited access to resources such as 
 food and medicine which affect their populations' health considerably. Additionally, another sad fact is that even though 
 tuberculosis has been curable since the 1940s[2] it has also been, "1 of the top 10 leading causes of death worldwide, 
 and is the second leading cause of death from a single infectious agent behind only COVID-19 and ranking above HIV/AIDS."[3] 
 This lack of access to tuberculosis medication means that, "99% of deaths occur in developing countries, with the greatest 
-burden in Sub-Saharan Africa and Southeast Asia"[4]. However, again, on the other hand, people not living in a "developed" 
+burden in Sub-Saharan Africa and Southeast Asia"[4]. Meaning if you get sick in a developing country, there is a much greater 
+chance that you will not be able to get the help you need. However, again, on the other hand, people not living in a "developed" 
 country are not necessarily less healthy and in fact for many societies that are still largely agricultural, "the major 
 chronic diseases have low prevalence among the rural peasantry and tribal groups, with the exception of gastro-esophageal 
-cancer, osteoarthritis and cataract."[5] 
+cancer, osteoarthritis and cataract."[5] With all of this in mind, for this project we are seeking evidence that answers 
+whether living in a developed country actually means having a longer life.
 
 **Data Sourcing:**
 
