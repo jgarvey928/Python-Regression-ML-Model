@@ -567,6 +567,7 @@ def load_qual_data_list(proc_data_list, quant_data_list):
 
 
 def get_quant_data():
+
     # Life Expectancy at Birth
     load_quant_data_list(le_total, le_total_summ, 0)
     # GDP per Capita (current US$)
