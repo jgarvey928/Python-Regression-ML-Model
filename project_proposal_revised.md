@@ -1,5 +1,5 @@
 ### SERX94: Project Proposal
-### Do People in Wealthier Countries Live Longer? (Working Title)
+### Do People in Wealthier Countries Live Longer?
 #### John Garvey
 ###### 09/14/2023
 

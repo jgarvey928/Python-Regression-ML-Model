@@ -24,19 +24,22 @@ def create_predictions(model01, model02, model03):
 
     models_file = open("models/linear_regression_predictions.csv", "w")
     models_file.seek(0,1)
-    string = "==============================================\n"
-    string = string + "Country: " + le_gdp_testing[0]["Country Name"] + " Actual: " + le_gdp_testing[0]["LE Mean"] + " Feature: " + le_gdp_testing[0]["GDP Mean"] + "\n"
-    string = string + "Model01 Prediction:  "+str(pred01)+" = " + str(model01[0]) + le_gdp_testing[0]["GDP Mean"] + " + " + str(model01[1]) + "\n"
-    string = string + "Model01 Difference: " + str(float(le_gdp_testing[0]["LE Mean"]) - pred01) + "\n"
-    string = string + "==============================================\n"
-    string = string + "Country: " + le_uwc_testing[0]["Country Name"] + " Actual: " + le_uwc_testing[0]["LE Mean"] + " Feature: " + le_uwc_testing[0]["UWC Mean"] + "\n"
-    string = string + "Model02 Prediction:  "+str(pred02)+" = " + str(model02[0]) + le_uwc_testing[0]["UWC Mean"] + " + " + str(model02[1]) + "\n"
-    string = string + "Model02 Difference: " + str(float(le_uwc_testing[0]["LE Mean"]) - pred02) + "\n"
-    string = string + "==============================================\n"
-    string = string + "Country: " + le_gdp_uwc_testing[0]["Country Name"] + " Actual: " + le_gdp_uwc_testing[0]["LE Mean"] + " Feature01: " + le_gdp_uwc_testing[0]["GDP Mean"] + " Feature02: " + le_gdp_uwc_testing[0]["UWC Mean"] + "\n"
-    string = string + "Model03 Prediction:  "+str(pred03)+" = " + str(model03[0]) + le_gdp_uwc_testing[0]["GDP Mean"] + str(model03[1]) + le_gdp_uwc_testing[0]["UWC Mean"] + " + " + str(model03[2]) + "\n"
-    string = string + "Model03 Difference: " + str(float(le_gdp_uwc_testing[0]["LE Mean"]) - pred03) + "\n"
-    string = string + "==============================================\n"
+    string = "============================================================================================\n"
+    string = string + "Country: " + le_gdp_testing[0]["Country Name"] + " | Actual Life Expectancy: " + le_gdp_testing[0]["LE Mean"] + " | Mean GDP per Capita: " + le_gdp_testing[0]["GDP Mean"] + "\n"
+    string = string + "Model01: Mean Life Expectancy = " + str(round(model01[0][0], 8)) + "(Mean GDP) + " + str(round(model01[1][0],8))+"\n"
+    string = string + "Model01 GDP Prediction:  "+str(pred01)+" = " + str(model01[0]) +"("+ le_gdp_testing[0]["GDP Mean"] + ") + " + str(model01[1]) + "\n"
+    string = string + "Model01 GDP Difference: " + str(float(le_gdp_testing[0]["LE Mean"]) - pred01) + "\n"
+    string = string + "============================================================================================\n"
+    string = string + "Country: " + le_uwc_testing[0]["Country Name"] + " | Actual Life Expectancy: " + le_uwc_testing[0]["LE Mean"] + " | Mean Underweight Children %: " + le_uwc_testing[0]["UWC Mean"] + "\n"
+    string = string + "Model02: Mean Life Expectancy = " + str(round(model02[0][0],8)) + "(Mean Underweight Children %) + " + str(round(model02[1][0],8))+"\n"
+    string = string + "Model02 UWC Prediction:  "+str(pred02)+" = " + str(model02[0]) +"("+ le_uwc_testing[0]["UWC Mean"] + ") + " + str(model02[1]) + "\n"
+    string = string + "Model02 UWC Difference: " + str(float(le_uwc_testing[0]["LE Mean"]) - pred02) + "\n"
+    string = string + "============================================================================================\n"
+    string = string + "Country: " + le_gdp_uwc_testing[0]["Country Name"] + " | Actual Life Expectancy: " + le_gdp_uwc_testing[0]["LE Mean"] + " | Mean GDP per Capita: " + le_gdp_uwc_testing[0]["GDP Mean"] + " Mean Underweight Children %: " + le_gdp_uwc_testing[0]["UWC Mean"] + "\n"
+    string = string + "Model03: Mean Life Expectancy = " + str(round(model03[0][0], 8)) + "(Mean GDP) + " + str(round(model03[1][0], 8)) + "(Mean Underweight Children %) + " + str(round(model03[2][0], 8)) + "\n"
+    string = string + "Model03 Both Prediction:  "+str(pred03)+" = " + str(model03[0]) +"("+ le_gdp_uwc_testing[0]["GDP Mean"] +") * "+ str(model03[1]) +"("+ le_gdp_uwc_testing[0]["UWC Mean"] + ") + " + str(model03[2]) + "\n"
+    string = string + "Model03 Both Difference: " + str(float(le_gdp_uwc_testing[0]["LE Mean"]) - pred03) + "\n"
+    string = string + "============================================================================================"
     models_file.write(string)
 
     return le_gdp_uwc_testing

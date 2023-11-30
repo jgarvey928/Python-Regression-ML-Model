@@ -52,7 +52,7 @@ def visualize_data():
     # print("Poverty headcount ratio at national poverty lines", pov_ratio[210]['Country Name'], pov_ratio[210]['Country Code'], f"in 2015 is {pov_ratio[210]['2015']} (% of population)")
 
     # display_list(le_total)
-    # display_list(gdp_pcap)
+    display_list(gdp_pcap)
     # display_list(tech_expo)
     # display_list(udwe_child)
 

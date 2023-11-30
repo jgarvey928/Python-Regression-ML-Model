@@ -75,12 +75,12 @@ def evaluate_data():
 def write_eval_summary(mse01, acc01, mse02, acc02, mse03, acc03):
 
     training_file = open("evaluation/summary.txt", "w")
-    string = '======================================================================================\n'
-    string = string + "Model #  |   MSE             | Mean Accuracy | \n"
+    string = '================================================================\n'
+    string = string + "Model #  |   MSE             | Mean Accuracy (Years) | \n"
     string = string + "================================================================\n"
-    string = string + "Model 01 | " + str(mse01)+" | "+str(acc01) + "\n"
-    string = string + "Model 02 | " + str(mse02)+" | "+str(acc02) + "\n"
-    string = string + "Model 03 | " + str(mse03)+" | "+str(acc03) + "\n"
+    string = string + "Model 01 GDP  | " + str(mse01)+" | "+str(acc01) + "\n"
+    string = string + "Model 02 UWC  | " + str(mse02)+" | "+str(acc02) + "\n"
+    string = string + "Model 03 Both | " + str(mse03)+" | "+str(acc03) + "\n"
     string = string + "================================================================\n"
     training_file.write(string)
 

@@ -1,5 +1,5 @@
 #### SERX94: Exploratory Data Munging and Visualization
-#### Do People in Wealthier Countries Live Longer? (Working Title)
+#### Do People in Wealthier Countries Live Longer?
 #### John S. Garvey
 #### 10/18/2023
 
@@ -34,7 +34,11 @@
 
 **Dataset File Hash(es):** 
 URL: https://databank.worldbank.org/indicator/NY.GDP.PCAP.CD/1ff4a498/Popular-Indicators#
+https://databank.worldbank.org/indicator/NY.GDP.PCAP.CD/1ff4a498/Popular-Indicators#
+
+certutil -hashfile TheWorldBank_DevelopmentIndicators.csv MD5
 MD5 Hash: 13006a515bee27b5a21a8a5672980bc5
+b4d376f20f75fe533f5b1902525334ae
 
 ## Interpretable Records
 ### Record 1

@@ -1,5 +1,6 @@
 import csv
 import numpy as np
+import matplotlib.pylab as plt
 
 __author__ = "John Garvey"
 __date__ = "10/20/2023"
@@ -52,6 +53,40 @@ def write_models():
     string = string + "Model03: Mean Life Expectancy = " + str(round(model03[0][0],8)) + "(Mean GDP) + " + str(round(model03[1][0],8)) + "(Mean Underweight Children %) + " + str(round(model03[2][0],8)) + "\n"
     string = string + "==============================================\n"
     models_file.write(string)
+    plot_model01()
+    plot_model02()
+
+    pass
+
+
+def plot_model01():
+
+    fig, ax = plt.subplots()
+    ax.set(xlim=[0, 85000], ylim=[0, 85])
+    ax.set(title='Model01 = '+ str(round(model01[0][0], 8)) + "(Mean GDP) + " + str(round(model01[1][0],8)),
+           ylabel='Life Expectancy',
+           xlabel='GDP')
+    n = np.arange(0, 80000, 1)
+    n = model01[0][0] * n + model01[1][0]
+    plt.plot(n)
+    fig.savefig("models/linear_model_life_expectancy_GDP.png")
+    ax.set(xlim=[0, 40500], ylim=[0, 85])
+    fig.savefig("models/linear_model_life_expectancy_GDP_focused.png")
+
+    pass
+
+
+def plot_model02():
+
+    fig, ax = plt.subplots()
+    ax.set(xlim=[0, 50], ylim=[0, 80])
+    ax.set(title='Model02 = '+ str(round(model02[0][0],8)) + "(Mean Underweight Children %) + " + str(round(model02[1][0],8)),
+           ylabel='Life Expectancy',
+           xlabel='Mean Underweight Children %')
+    n = np.arange(0, 80000, 1)
+    n = model02[0][0] * n + model02[1][0]
+    plt.plot(n)
+    fig.savefig("models/linear_model_life_expectancy_underweight.png")
 
     pass
 
