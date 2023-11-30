@@ -160,7 +160,6 @@ def write_multi_feature_data():
     for country_info in le_gdp_uwc_testing:
         testing_file.write("\""+country_info['Country Name'] + "\"," + str(country_info["LE Mean"]) + "," + str(country_info["GDP Mean"])  + "," + str(country_info["UWC Mean"]) + "\n")
 
-
     pass
 
 

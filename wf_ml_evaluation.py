@@ -8,6 +8,10 @@ __author__ = "John Garvey"
 __date__ = "10/20/2023"
 __assignment = "Project MS05"
 
+# Years Start
+YEAR_START = 1960
+# Year End
+YEAR_END = 2022
 # NUMBER OF COUNTRIES IN DATASET
 NUMB_COUNTRIES = 217
 # NUMBER OF DATA CATEGORIES
@@ -65,7 +69,6 @@ def evaluate_data():
 
     write_eval_summary(mse01, acc01, mse02, acc02, mse03, acc03)
 
-
     pass
 
 
@@ -78,7 +81,6 @@ def write_eval_summary(mse01, acc01, mse02, acc02, mse03, acc03):
     string = string + "Model 01 | " + str(mse01)+" | "+str(acc01) + "\n"
     string = string + "Model 02 | " + str(mse02)+" | "+str(acc02) + "\n"
     string = string + "Model 03 | " + str(mse03)+" | "+str(acc03) + "\n"
-    string = string + "================================================================\n"
     string = string + "================================================================\n"
     training_file.write(string)
 
@@ -121,8 +123,8 @@ def find_mse02(coef01, coef02, inter, testing_data, target, feature01, feature02
         sqrd = sub * sub
         summ += sqrd
     return summ / n
-    pass
 
+    pass
 
 
 def train_and_test_data():
@@ -147,7 +149,6 @@ def write_single_feature_data(training_list, testing_list, file_name, target, fe
         training_file.write("\""+country_info['Country Name'] + "\"," + str(country_info[target]) + "," + str(country_info[feature]) + "\n")
 
     testing_file = open("data_processed/"+file_name+"_testing.csv", "w")
-    new_fieldnames = "Country Name,"+target+","+feature+"\n"
     testing_file.write(new_fieldnames)
     for country_info in testing_list:
         testing_file.write("\""+country_info['Country Name'] + "\"," + str(country_info[target]) + "," + str(country_info[feature]) + "\n")
@@ -176,10 +177,11 @@ def split_data(data_list, training_list, testing_list):
 def get_feature_target_mean(target, feature, data_list):
 
     for country_info in all_means_data:
-        if country_info[target] != -1 and country_info[feature] != -1 :
-            data_list.append({ "Country Name": country_info["Country Name"],
+        if country_info[target] != -1 and country_info[feature] != -1:
+            data_list.append({"Country Name": country_info["Country Name"],
                                 target: country_info[target],
                                 feature: country_info[feature]})
+
     pass
 
 
@@ -204,7 +206,7 @@ def get_all_means():
     i = 1
     for country_info in le_total:
         le_mean, gdp_mean,  tech_mean, uwc_mean, pov_mean = get_means(country_info["Country Name"])
-        all_means_data.append({ "Country Name": country_info["Country Name"],
+        all_means_data.append({"Country Name": country_info["Country Name"],
                                 "LE Mean": le_mean,
                                 "GDP Mean": gdp_mean,
                                 "TECH Mean": tech_mean,
@@ -212,7 +214,6 @@ def get_all_means():
                                 "POV Mean": pov_mean})
         # print(i, le_mean, gdp_mean,  tech_mean, uwc_mean, pov_mean)
         i += 1
-
 
     pass
 
@@ -275,6 +276,46 @@ def read_processed(file_name, append_list):
             add_dict = dict()
             add_dict['Country Name'] = row['Country Name']
             add_dict['Country Code'] = row['Country Code']
+            add_dict['1960'] = row['1960']
+            add_dict['1961'] = row['1961']
+            add_dict['1962'] = row['1962']
+            add_dict['1963'] = row['1963']
+            add_dict['1964'] = row['1964']
+            add_dict['1965'] = row['1965']
+            add_dict['1966'] = row['1966']
+            add_dict['1967'] = row['1967']
+            add_dict['1968'] = row['1968']
+            add_dict['1969'] = row['1969']
+            add_dict['1970'] = row['1970']
+            add_dict['1971'] = row['1971']
+            add_dict['1972'] = row['1972']
+            add_dict['1973'] = row['1973']
+            add_dict['1974'] = row['1974']
+            add_dict['1975'] = row['1975']
+            add_dict['1976'] = row['1976']
+            add_dict['1977'] = row['1977']
+            add_dict['1978'] = row['1978']
+            add_dict['1979'] = row['1979']
+            add_dict['1980'] = row['1980']
+            add_dict['1981'] = row['1981']
+            add_dict['1982'] = row['1982']
+            add_dict['1983'] = row['1983']
+            add_dict['1984'] = row['1984']
+            add_dict['1985'] = row['1985']
+            add_dict['1986'] = row['1986']
+            add_dict['1987'] = row['1987']
+            add_dict['1988'] = row['1988']
+            add_dict['1989'] = row['1989']
+            add_dict['1990'] = row['1990']
+            add_dict['1991'] = row['1991']
+            add_dict['1992'] = row['1992']
+            add_dict['1993'] = row['1993']
+            add_dict['1994'] = row['1994']
+            add_dict['1995'] = row['1995']
+            add_dict['1996'] = row['1996']
+            add_dict['1997'] = row['1997']
+            add_dict['1998'] = row['1998']
+            add_dict['1999'] = row['1999']
             add_dict['2000'] = row['2000']
             add_dict['2001'] = row['2001']
             add_dict['2002'] = row['2002']
@@ -291,6 +332,13 @@ def read_processed(file_name, append_list):
             add_dict['2013'] = row['2013']
             add_dict['2014'] = row['2014']
             add_dict['2015'] = row['2015']
+            add_dict['2016'] = row['2016']
+            add_dict['2017'] = row['2017']
+            add_dict['2018'] = row['2018']
+            add_dict['2019'] = row['2019']
+            add_dict['2020'] = row['2020']
+            add_dict['2021'] = row['2021']
+            add_dict['2022'] = row['2022']
             append_list.append(add_dict)
     pass
 
@@ -315,13 +363,9 @@ def load_qual_data_list(proc_data_list, quant_data_list):
     countries_collected = 0
     for country_info in proc_data_list:
         some_data = False
-        for i in range(16):
-            if i < 10:
-                if country_info[f"200{i}"] != "..":
-                    some_data = True
-            else:
-                if country_info[f"20{i}"] != "..":
-                    some_data = True
+        for i in range(YEAR_START, YEAR_END):
+            if country_info[f"{i}"] != "..":
+                some_data = True
         if some_data:
             countries_collected += 1
         else:
@@ -397,17 +441,11 @@ def get_median_and_mean(proc_data_list, quant_data_list):
         country_value_list = []
         country_median = None
         country_mean = None
-        for i in range(16):
-            if i < 10:
-                if country_info[f"200{i}"] != "..":
-                    temp = float(country_info[f"200{i}"])
-                    country_value_list.append(temp)
-                    all_value_list.append(temp)
-            else:
-                if country_info[f"20{i}"] != "..":
-                    temp = float(country_info[f"20{i}"])
-                    country_value_list.append(temp)
-                    all_value_list.append(temp)
+        for i in range(YEAR_START, YEAR_END):
+            if country_info[f"{i}"] != "..":
+                temp = float(country_info[f"{i}"])
+                country_value_list.append(temp)
+                all_value_list.append(temp)
             pass  # loop through each year
 
         # get mean for each country
@@ -449,17 +487,11 @@ def get_min(proc_data_list, quant_data_list):
     x = 2
     for country_info in proc_data_list:
         min_country = 9999999999
-        for i in range(16):
-            if i < 10:
-                if country_info[f"200{i}"] != "..":
-                    temp = float(country_info[f"200{i}"])
-                    if temp < min_country:
-                        min_country = temp
-            else:
-                if country_info[f"20{i}"] != "..":
-                    temp = float(country_info[f"20{i}"])
-                    if temp < min_country:
-                        min_country = temp
+        for i in range(YEAR_START, YEAR_END):
+            if country_info[f"{i}"] != "..":
+                temp = float(country_info[f"{i}"])
+                if temp < min_country:
+                    min_country = temp
         quant_data_list[x]['Min'] = min_country
         if min_country < min_total:
             min_total = min_country
@@ -474,17 +506,11 @@ def get_max(proc_data_list, quant_data_list):
     x = 2
     for country_info in proc_data_list:
         max_country = -1
-        for i in range(16):
-            if i < 10:
-                if country_info[f"200{i}"] != "..":
-                    temp = float(country_info[f"200{i}"])
-                    if temp > max_country:
-                        max_country = temp
-            else:
-                if country_info[f"20{i}"] != "..":
-                    temp = float(country_info[f"20{i}"])
-                    if temp > max_country:
-                        max_country = temp
+        for i in range(YEAR_START, YEAR_END):
+            if country_info[f"{i}"] != "..":
+                temp = float(country_info[f"{i}"])
+                if temp > max_country:
+                    max_country = temp
         quant_data_list[x]['Max'] = max_country
         if max_country > max_total:
             max_total = max_country
