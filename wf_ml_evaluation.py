@@ -542,5 +542,5 @@ def remove_data_from_list(key_name, remove_id, remove_list):
             pass
     pass
 
-
-evaluate_data()
+if __name__ == '__main__':
+    evaluate_data()

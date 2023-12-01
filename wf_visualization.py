@@ -52,7 +52,7 @@ def visualize_data():
     # print("Poverty headcount ratio at national poverty lines", pov_ratio[210]['Country Name'], pov_ratio[210]['Country Code'], f"in 2015 is {pov_ratio[210]['2015']} (% of population)")
 
     # display_list(le_total)
-    display_list(gdp_pcap)
+    # display_list(gdp_pcap)
     # display_list(tech_expo)
     # display_list(udwe_child)
 
@@ -97,7 +97,7 @@ def create_histogram():
     category_types = ["LEB", "GDP", "HTE", "UWC", "NPR"]
 
     fig, ax = plt.subplots()
-    ax.set(title=r'Data Category Sample Sizes ', ylabel='Number of Countries Collectd From', xlabel="Data Categories")
+    ax.set(title=r'World Developement Indicator Sample Sizes ', ylabel='Number of Countries Collectd From', xlabel="World Developement Indicators")
     bars = ax.bar(category_types, numbers_collected)
     bars[0].set_color('green')
     bars[0].set_label("LEB = "+le_total_summ[0]["Data Type"])
