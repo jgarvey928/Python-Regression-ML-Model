@@ -1,16 +1,16 @@
 ============================================================================================
-Country: Guam | Actual Life Expectancy: 71.33290322580642 | Mean GDP per Capita: 30454.658871035983
-Model01: Mean Life Expectancy = 0.00043117(Mean GDP) + 60.95546366
-Model01 GDP Prediction:  74.086672089337 = [0.00043117](30454.658871035983) + [60.95546366]
-Model01 GDP Difference: -2.7537688635305813
+Country: Vanuatu | Actual Life Expectancy: 63.65025806451612 | Mean GDP per Capita: 1815.0039122294418
+Model01: Mean Life Expectancy = 0.00044476(Mean GDP) + 60.48161558
+Model01 GDP Prediction:  61.28886503450074 = [0.00044476](1815.0039122294418) + [60.48161558]
+Model01 GDP Difference: 2.3613930300153854
 ============================================================================================
-Country: Cameroon | Actual Life Expectancy: 52.3452258064516 | Mean Underweight Children %: 14.785714285714286
-Model02: Mean Life Expectancy = -0.62140675(Mean Underweight Children %) + 69.79746936
-Model02 UWC Prediction:  60.60952670157205 = [-0.62140675](14.785714285714286) + [69.79746936]
-Model02 UWC Difference: -8.26430089512045
+Country: Serbia | Actual Life Expectancy: 70.2389114870181 | Mean Underweight Children %: 1.55
+Model02: Mean Life Expectancy = -0.58176467(Mean Underweight Children %) + 69.08942551
+Model02 UWC Prediction:  68.18769027123815 = [-0.58176467](1.55) + [69.08942551]
+Model02 UWC Difference: 2.0512212157799468
 ============================================================================================
-Country: Honduras | Actual Life Expectancy: 63.37979032258063 | Mean GDP per Capita: 1096.990704400119 Mean Underweight Children %: 12.8875
-Model03: Mean Life Expectancy = 0.00047825(Mean GDP) + -0.4874139(Mean Underweight Children %) + 66.31204553
-Model03 Both Prediction:  60.5551396712987 = [0.00047825](1096.990704400119) * [-0.4874139](12.8875) + [66.31204553]
-Model03 Both Difference: 2.824650651281935
+Country: Bolivia | Actual Life Expectancy: 56.434870967741944 | Mean GDP per Capita: 1119.1713249239187 Mean Underweight Children %: 7.663636363636363
+Model03: Mean Life Expectancy = 0.00053067(Mean GDP) + -0.4224264(Mean Underweight Children %) + 65.16547162
+Model03 Both Prediction:  62.522055459297555 = [0.00053067](1119.1713249239187) * [-0.4224264](7.663636363636363) + [65.16547162]
+Model03 Both Difference: -6.087184491555611
 ============================================================================================
