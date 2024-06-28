@@ -6,4 +6,3 @@ OS: Windows_NT x64 10.0.22631
 
 REQUIRED PACKAGES:
 matplotlib~=3.8.0
-sklearn.utils import shuffle
