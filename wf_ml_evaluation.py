@@ -1,6 +1,6 @@
 import csv
+from matplotlib.pylab import shuffle
 import numpy as np
-from sklearn.utils import shuffle
 from wf_ml_training import create_models
 from wf_ml_prediction import create_predictions
 
@@ -162,7 +162,9 @@ def split_data(data_list, training_list, testing_list):
     perc = RATIO_TRAINING / 100
     sample_size = len(data_list)
     ratio = round(sample_size * perc)
-    shfData = shuffle(np.array(data_list))
+    temp = data_list
+    shuffle(temp)
+    shfData = temp
     i = 1
     for country_info in shfData:
         if i <= ratio:
