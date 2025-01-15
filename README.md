@@ -1,4 +1,9 @@
-# ser494_23fc_project
+# jgarvey928_data_sci_regression_project
+
+# To Run
+Run this project from the wf_core.py main file. ( Must Have Python )
+	Either through the "python wf_core.py" cmd or through an IDE like VSCode
+
 
 # Introduction
 
