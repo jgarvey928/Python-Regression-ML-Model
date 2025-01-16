@@ -1,8 +1,8 @@
 import csv
 from matplotlib.pylab import shuffle
 import numpy as np
-from wf_ml_training import create_models
-from wf_ml_prediction import create_predictions
+from ml_training import create_models
+from ml_prediction import create_predictions
 
 __author__ = "John Garvey"
 __date__ = "10/20/2023"

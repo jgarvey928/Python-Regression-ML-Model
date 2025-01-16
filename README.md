@@ -1,17 +1,15 @@
 # JGarvey928 Predictive Regression Project
 
 # To Run
-Run this Python project from the wf_core.py main file. ( Must Have matplotlib~=3.8.0 )
-	Either through the "python wf_core.py" cmd or through an IDE like VSCode
-
-
-RUNS ON:
-Visual Studio Code Version: 1.85.1 (user setup)
-OS: Windows_11 x64 10.0.22631
+Run this Python project from the ml_core.py main file. ( Must Have matplotlib~=3.8.0 )
+	Either through the "python ml_core.py" cmd or through an IDE like VSCode
 
 REQUIRED PACKAGES:
 matplotlib~=3.8.0
 
+RUNS ON:
+Visual Studio Code Version: 1.85.1 (user setup)
+OS: Windows_11 x64 10.0.22631
 
 # Intro
 This repository contains files for the individual course project in SER494: Data Science for Software Engineers (2023) created by John S. Garvey for partial fulfillment of the course requirements.

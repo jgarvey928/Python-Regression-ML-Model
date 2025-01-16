@@ -20,9 +20,7 @@ The datasets found at www.worldbank.org we will be using are from every country 
 - Population Ratio below National Poverty Lines
 - Prevalence of Underweight Children
 
-Our primary focus is on modern rates of life expectancy, but we are also going to consider the factors
-that might lead to higher life expectancy. The main question we are concerned with is as follows. "Does living in a 
-wealthy nation lead to a longer life?" 
+Our primary focus is on modern rates of life expectancy, but we are also going to consider the factors that might lead to higher life expectancy. The main question we are concerned with is as follows. "Does living in a wealthy nation lead to a longer life?" 
 
 For the purpose of this project, we will be using a crude classification for countries with different levels of prosperity. 
 

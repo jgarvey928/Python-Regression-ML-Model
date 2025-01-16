@@ -1,6 +1,6 @@
-from wf_dataprocessing import process_data
-from wf_visualization import visualize_data
-from wf_ml_evaluation import evaluate_data
+from ml_dataprocessing import process_data
+from ml_visualization import visualize_data
+from ml_evaluation import evaluate_data
 
 __author__ = "John Garvey"
 __date__ = "10/14/2023"
