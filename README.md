@@ -1,8 +1,8 @@
 # JGarvey928 Predictive Regression Project
 
 # To Run
-Run this Python project from the ml_core.py main file. ( Must Have matplotlib~=3.8.0 )
-	Either through the "python ml_core.py" cmd or through an IDE like VSCode
+Run this Python project from the ml_core.py main file. (Must Have matplotlib~=3.8.0)  
+Either through the "python ml_core.py" cmd or through an IDE like VSCode
 
 REQUIRED PACKAGES:  
 matplotlib~=3.8.0  
