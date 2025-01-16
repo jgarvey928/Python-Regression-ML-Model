@@ -245,7 +245,7 @@ def create_pair_plot(summ_data_y, summ_data_x, indic):
 def write_correlations_data_table():
 
     # : Outputs the global mean pairwise correlations into a table in data_processed/correlations.txt
-    correlations_file = open("data_processed/correlations.txt", "w")
+    correlations_file = open("models/correlations.txt", "w")
     correlations_file.write('=======================================================================|\n')
     correlations_file.write("                  Global Correlation Data For 2000-2015                |\n")
     correlations_file.write('=======================================================================|\n')
@@ -487,9 +487,9 @@ def get_sigma(diff_mean_values):
 
 def write_summary_data_table():
 
-    summary_file = open("data_processed/summary.txt", "w")
+    summary_file = open("models/dataset_summary.txt", "w")
     summary_file.write('=========================================================================================================================\n')
-    summary_file.write(' Summary Datasets Information For 2000-2015    |      Min  |         Max  |    Median  |       Mean  |  Collected From  |\n')
+    summary_file.write(' Summary Datasets Information For 1960-2022    |      Min  |         Max  |    Median  |       Mean  |  Collected From  |\n')
     summary_file.write('=========================================================================================================================\n')
     summary_file.write(" "+le_total_summ[0]['Data Type']+"            | ")
     summary_file.write(f"{le_total_summ[1]['Min']:8.2f}"+"  |    ")

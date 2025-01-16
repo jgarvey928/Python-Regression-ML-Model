@@ -1,7 +1,7 @@
 ==============================================
 Nations Mean Life Expectancy Linear Regression Models: 
 ==============================================
-Model01: Mean Life Expectancy = 0.00045357(Mean GDP) + 60.8763948
-Model02: Mean Life Expectancy = -0.62643385(Mean Underweight Children %) + 69.68462538
-Model03: Mean Life Expectancy = 0.00038819(Mean GDP) + -0.4901666(Mean Underweight Children %) + 66.82108066
+Model01: Mean Life Expectancy = 0.0004626(Mean GDP) + 60.89571437
+Model02: Mean Life Expectancy = -0.58401166(Mean Underweight Children %) + 69.21723597
+Model03: Mean Life Expectancy = 0.00060449(Mean GDP) + -0.45901195(Mean Underweight Children %) + 65.66369271
 ==============================================
