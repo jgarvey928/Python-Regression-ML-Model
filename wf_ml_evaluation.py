@@ -74,7 +74,7 @@ def evaluate_data():
 
 def write_eval_summary(mse01, acc01, mse02, acc02, mse03, acc03):
 
-    training_file = open("evaluation/summary.txt", "w")
+    training_file = open("models/summary.txt", "w")
     string = '================================================================\n'
     string = string + "Model #  |   MSE             | Mean Accuracy (Years) | \n"
     string = string + "================================================================\n"

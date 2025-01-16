@@ -1,8 +1,0 @@
-RUNS ON:
-Visual Studio Code
-Version: 1.85.1 (user setup)
-V8: 11.4.183.29-electron.0
-OS: Windows_NT x64 10.0.22631
-
-REQUIRED PACKAGES:
-matplotlib~=3.8.0
