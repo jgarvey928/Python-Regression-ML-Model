@@ -1,6 +1,8 @@
 # Life Expectancy & Wealth: A Predictive Regression Analysis
 [![Python 3.10.11](https://img.shields.io/badge/python-3.10.11-blue.svg)](https://www.python.org/downloads/release/python-31011/)
 
+![Project Graph](visuals/Graphs01.jpg)
+
 ## 📌 Introduction
 This repository contains a machine learning project focused on modern rates of life expectancy and the socioeconomic factors that influence them. Developed as an individual course project for **SER494: Data Science for Software Engineers (2023)** at Arizona State University, this study explores the critical correlation between national wealth and longevity.
 
