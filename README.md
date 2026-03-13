@@ -43,13 +43,14 @@ bash pip install matplotlib~=3.8.011
 
 ### Installation & Execution
 Clone the repository:
-
-####  Bash
+```
 git clone [https://github.com/jgarvey928/Python-Regression-ML-Model.git](https://github.com/jgarvey928/Python-Regression-ML-Model.git)
+```
 Navigate to the directory and run the main core file:
-
-Bash
+```
 python ml_core.py
+```
+
 ## 📁 Project Structure
 ml_core.py: The main entry point for the regression model and data visualization.
 
