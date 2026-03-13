@@ -8,6 +8,13 @@ This repository contains a machine learning project focused on modern rates of l
 
 ---
 
+## 📚 Resources
+For a detailed breakdown of the methodology, data sources, and full statistical results, please refer to the formal report included in this repository:
+
+📄 **[REPORT - Do Inhabitants of Wealthier Nations Live Longer.pdf](https://github.com/jgarvey928/Python-Regression-ML-Model/blob/main/REPORT%20-%20Do%20Inhabitants%20of%20Wealthier%20Nations%20Live%20Longer.pdf)**
+
+---
+
 ## 🔬 Abstract
 Our primary focus is on modern rates of life expectancy, considering various factors that lead to higher survival rates across different demographics. By utilizing regression models, we analyze global health data to determine the weight of economic prosperity (GDP) against other health indicators in predicting life expectancy.
 
@@ -52,7 +59,3 @@ REPORT - Do Inhabitants of Wealthier Nations Live Longer.pdf: Full research pape
 John S. Garvey Student, SER494: Data Science for Software Engineers
 Release Note: This project was cleared for public release by course staff (R. Acuna) on 12/31/2023.
 
-## 📚 Resources
-For a detailed breakdown of the methodology, data sources, and full statistical results, please refer to the formal report included in this repository:
-
-📄 REPORT - Do Inhabitants of Wealthier Nations Live Longer.pdf
